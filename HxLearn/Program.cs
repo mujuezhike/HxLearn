@@ -16,6 +16,7 @@ namespace HxLearn
         static void Main(string[] args)
         {
             Monster er = new Monster();
+            int i = er[1];
             er.Name = "ername";
             EliteMonster em = 32;
             em.Name = "sds";
