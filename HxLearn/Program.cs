@@ -15,10 +15,17 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
-
+            Monster er = new Monster();
+            er.Name = "ername";
             EliteMonster em = 32;
+            em.Name = "sds";
+            Monster emm = em;
+            em = (EliteMonster)emm;
 
-            var client = new HttpClient();
+            string ename = (er as EliteMonster).Name;
+            Console.WriteLine(ename);
+
+                var client = new HttpClient();
             var uri = new Uri(Uri.EscapeUriString("http://www.baidu.com"));
             var str = client.GetAsync(uri).Result.Content.ReadAsStringAsync().Result.ToString();
 

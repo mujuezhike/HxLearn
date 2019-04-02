@@ -53,6 +53,7 @@
     <Compile Include="FileUtils.cs" />
     <Compile Include="GameObject\Monster.cs" />
     <Compile Include="ImageLoader.cs" />
+    <Compile Include="MonsterBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordPoint.cs" />
