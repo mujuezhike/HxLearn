@@ -1,1 +1,7 @@
 D:\pro\HxLearn\HxLearn\bin\Debug\HxLearn.exe.config
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLearn.exe.config
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLearn.exe
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLearn.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.exe
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.csprojResolveAssemblyReference.cache
