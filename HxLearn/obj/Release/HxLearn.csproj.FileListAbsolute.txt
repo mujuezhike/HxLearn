@@ -1,0 +1,9 @@
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\HxLearn.exe.config
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\HxLearn.exe
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\HxLearn.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Release\HxLearn.csprojResolveAssemblyReference.cache
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Release\HxLearn.exe
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Release\HxLearn.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\Newtonsoft.Json.dll
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\Newtonsoft.Json.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Release\Newtonsoft.Json.xml

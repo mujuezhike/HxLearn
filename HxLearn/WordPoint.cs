@@ -119,7 +119,7 @@ namespace HxLearn
 
                     //coding += (lowCode + hightCode);//加入到字符串中,
                     int b = (94 * (b0 - 1) + (b1 - 1)) * 32;
-                    FileStream fs = new FileStream(@"E:\devcodes\csharp\pro\pro\zt\HZK16", FileMode.Open, FileAccess.Read);
+                    FileStream fs = new FileStream(FileUtils.GetProPath() + HZK16path, FileMode.Open, FileAccess.Read);
                     byte[] desBytes = new byte[fs.Length];
                     fs.Read(desBytes, 0, desBytes.Length);
 
