@@ -8,10 +8,11 @@ namespace HxLearn.GameObject
 {
     class Monster:IDisposable
     {
+
         private int[] innerList;
         private List<string> list;
 
-        public int Id {get;set;}
+        public int Id { get; set; }
         public string Name { get; set; }
         public Monster( int id)
         {
@@ -74,6 +75,20 @@ namespace HxLearn.GameObject
         }
         #endregion
 
+        public static Monster operator +(Monster m1, Monster m2)
+        {
+            return new Monster();
+        }
+
+        public static Monster operator +(GameObjectImpl m1, Monster m2)
+        {
+            return new Monster();
+        }
+
+        public static Monster operator +(Monster m1, GameObject m2)
+        {
+            return new Monster();
+        }
     }
 
     class EliteMonster : Monster

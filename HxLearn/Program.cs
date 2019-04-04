@@ -1,15 +1,10 @@
 ﻿using HxLearn.GameObject;
 using HxLearn.GameStatic;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using static HxLearn.ImageLoader;
 
 namespace HxLearn
 {
@@ -17,6 +12,8 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
+            int[][] a =new  int[2][3];
+
             ViewStatic.InitConsole();
             ViewStatic.InitLayer(ref ViewStatic.BackLayer);
             ViewStatic.InitLayer(ref ViewStatic.MidLayer);
@@ -93,6 +90,7 @@ namespace HxLearn
             */
         }
 
+        
         async static void GetName(string uri)
         {
             var client = new HttpClient();
