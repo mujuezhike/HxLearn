@@ -1,7 +1,9 @@
 ﻿using HxLearn.GameObject;
+using HxLearn.GameStatic;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
@@ -15,6 +17,35 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
+            ViewStatic.InitConsole();
+            ViewStatic.InitLayer(ref ViewStatic.BackLayer);
+            ViewStatic.InitLayer(ref ViewStatic.MidLayer);
+            ViewStatic.InitLayer(ref ViewStatic.FrontLayer);
+            ViewStatic.InitLayer(ref ViewStatic.EffectLayer);
+
+            Bitmap[] bmc = new Bitmap[5];
+            bmc[0] = new Bitmap(@"D:\csharp\ozy\ozy\shijieditu.jpg");
+            bmc[1] = new Bitmap(@"D:\csharp\ozy\ozy\cloud.png");
+            bmc[2] = new Bitmap(@"D:\csharp\ozy\ozy\cloud2.png");
+            bmc[3] = new Bitmap(@"D:\csharp\ozy\ozy\cloudsmall.png");
+
+            for (int i =0; i<1000;i++)
+            {
+                ImageLoader.LoadBitMap(ViewStatic.BackLayer.map, bmc[0], 0, 0, 100, 60);
+                ViewStatic.InitLayer(ref ViewStatic.MidLayer);
+                ImageLoader.LoadBitMap(ViewStatic.MidLayer.map, bmc[2], 50-i%50, 15);
+                ViewStatic.InitLayer(ref ViewStatic.FrontLayer);
+                ImageLoader.LoadBitMap(ViewStatic.FrontLayer.map, bmc[3], 10 + i % 50, 30 - i%30);
+                ViewStatic.InitLayer(ref ViewStatic.EffectLayer);
+                ImageLoader.LoadBitMap(ViewStatic.EffectLayer.map, bmc[1], 0 + i % 50, 10);
+                ImageLoader.Show(ViewStatic.EffectLayer, ViewStatic.FrontLayer, ViewStatic.MidLayer, ViewStatic.BackLayer);
+
+                Thread.Sleep(15);
+            }
+
+            Console.ReadLine();
+            
+            /*
             Monster er = new Monster();
             int i = er[1];
             er.Name = "ername";
@@ -59,6 +90,7 @@ namespace HxLearn
             Console.WriteLine(string.Format("{0:d}", dt));
             Console.WriteLine(string.Format("{0:yy-MM-dd hh:mm:ss}", dt));
             Console.ReadLine();
+            */
         }
 
         async static void GetName(string uri)

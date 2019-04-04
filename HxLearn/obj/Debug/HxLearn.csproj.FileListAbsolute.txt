@@ -5,3 +5,6 @@ D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLearn.pdb
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.exe
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.pdb
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.csprojResolveAssemblyReference.cache
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.dll
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.pdb
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.xml

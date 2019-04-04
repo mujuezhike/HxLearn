@@ -7,6 +7,7 @@ namespace HxLearn
 {
     class ImageLoader
     {
+        private static VBlock[,] LastTemp;
         /// <summary>
         /// 图层显示块
         /// </summary>
@@ -18,6 +19,33 @@ namespace HxLearn
             public ConsoleColor bColor;
             public String font;
             public bool isTrans;
+            public bool isTransF;
+
+            public override bool Equals(object obj)
+            {
+                if (obj is VBlock)
+                {
+                    VBlock objv = (VBlock)obj;
+                    if(    this.x == objv.x 
+                        && this.y == objv.y
+                        && this.fColor == objv.fColor
+                        && this.bColor == objv.bColor
+                        && this.font == objv.font
+                        && this.isTrans == objv.isTrans
+                        && this.isTransF == objv.isTransF)
+                    {
+                        return true;
+                    }
+                    return false;
+
+                }
+                return base.Equals(obj);
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
         }
 
         /// <summary>
@@ -261,7 +289,7 @@ namespace HxLearn
             }
         }
 
-        static public void UpdateMutiLayer(int x1, int y1, int x2, int y2, params Layer[] layers)
+        public static void UpdateMutiLayer(int x1, int y1, int x2, int y2, params Layer[] layers)
         {
             if (layers != null && layers.Length > 0)
             {
@@ -303,6 +331,159 @@ namespace HxLearn
 
                 }
             }
+        }
+
+        /// <summary>
+        /// 合并图层
+        /// </summary>
+        /// <param name="layers"></param>
+        /// <returns></returns>
+        public static VBlock[,] ComBineLayer(params Layer[] layers)
+        {
+            if (layers != null && layers.Length > 0)
+            {
+                Layer mainLayer = layers[0];
+                VBlock[,] blocks = mainLayer.map;
+                VBlock[,] cbBlocks = new VBlock[blocks.GetLength(0), blocks.GetLength(1)];
+                for (int i = 0; i < blocks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < blocks.GetLength(1); j++)
+                    {
+                        VBlock cbBlock = new VBlock();
+                        int m = 0;
+                        while (true)
+                        {
+                            Layer showLayer = layers[m];
+                            VBlock vb = showLayer.map[i, j];
+                            if (!vb.isTrans)
+                            {
+                                cbBlock.x = i;
+                                cbBlock.y = j;
+                                cbBlock.isTrans = false;
+                                cbBlock.bColor = vb.bColor;
+                                cbBlock.font = "　";
+                                break;
+                            }
+                            if (m < layers.Length - 1)
+                            {
+                                m++;
+                            }
+                            else
+                            {
+                                //默认背景
+                                cbBlock.x = i;
+                                cbBlock.y = j;
+                                cbBlock.isTrans = false;
+                                cbBlock.bColor = ConsoleColor.Black;
+                                cbBlock.font = "　";
+                                break;
+                            }
+                        }
+
+                        int mm = 0;
+                        while (true)
+                        {
+                            Layer showLayer = layers[mm];
+                            VBlock vb = showLayer.map[i, j];
+                            if (!vb.isTransF)
+                            {
+                                cbBlock.isTransF = false;
+                                cbBlock.fColor = vb.fColor;
+                                cbBlock.font = vb.font;
+                                break;
+                            }
+                            if (mm < layers.Length - 1)
+                            {
+                                mm++;
+                            }
+                            else
+                            {
+                                //默认背景
+                                cbBlock.isTransF = false;
+                                cbBlock.fColor = ConsoleColor.White;
+                                cbBlock.font = "　";
+                                break;
+                            }
+                        }
+
+                        cbBlocks[i, j] = cbBlock;
+
+                    }
+
+                }
+
+                return cbBlocks;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 复制VBlocks 用于下次比较
+        /// </summary>
+        /// <param name="oBlocks"></param>
+        /// <returns></returns>
+        public static VBlock[,] CopyVBlocks(VBlock[,] oBlocks)
+        {
+            if (null != oBlocks)
+            {
+                VBlock[,] nBlocks = new VBlock[oBlocks.GetLength(0), oBlocks.GetLength(1)];
+                for (int i = 0; i < oBlocks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < oBlocks.GetLength(1); j++)
+                    {
+                        VBlock vb = new VBlock();
+                        VBlock ovb = oBlocks[i, j];
+                        vb.x = ovb.x;
+                        vb.y = ovb.y;
+                        vb.bColor = ovb.bColor;
+                        vb.fColor = ovb.fColor;
+                        vb.isTrans = ovb.isTrans;
+                        vb.isTransF = ovb.isTransF;
+                        vb.font = ovb.font;
+                        nBlocks[i, j] = vb;
+                    }
+                }
+                return nBlocks;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 显示
+        /// </summary>
+        /// <param name="layers"></param>
+        public static void Show(params Layer[] layers)
+        {
+            VBlock[,] nBlocks = ComBineLayer(layers);
+            int m = 0;
+            if (null != nBlocks)
+            {
+                for (int i = 0; i < nBlocks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < nBlocks.GetLength(1); j++)
+                    {
+                        VBlock vb = nBlocks[i, j];
+                        if (null== LastTemp || !LastTemp[i, j].Equals(vb))
+                        {
+                            Console.SetCursorPosition(i * 2, j);
+                            Console.BackgroundColor = vb.bColor;
+                            Console.ForegroundColor = vb.fColor;
+                            Console.CursorVisible = false;
+                            Console.Write(vb.font);
+                            m++;
+                        }
+
+                    }
+                }
+            }
+            //DEBUG
+            //Console.SetCursorPosition(0, 0);
+            //Console.BackgroundColor = ConsoleColor.Black;
+            //Console.ForegroundColor = ConsoleColor.White;
+            //Console.Write(m);
+
+            LastTemp = CopyVBlocks(nBlocks);
         }
     }
 }
