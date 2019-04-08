@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitmapExtension.cs" />
+    <Compile Include="CommonUtils\MemUtils.cs" />
     <Compile Include="CommonUtils\Paixu.cs" />
     <Compile Include="CommonUtils\TypeUtils.cs" />
     <Compile Include="FileUtils.cs" />

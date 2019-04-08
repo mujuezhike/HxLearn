@@ -1,5 +1,8 @@
 ﻿using HxLearn.GameStatic;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 
@@ -9,6 +12,11 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
+            int m = 1;
+            int l = 4;
+            Console.WriteLine("322");
+            Debug.WriteLine("4333");
+            Console.ReadLine();
 
             ViewStatic.InitConsole();
             ViewStatic.InitLayer(ref ViewStatic.BackLayer);
