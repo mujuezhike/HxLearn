@@ -85,7 +85,7 @@ namespace HxLearn.GameObject
             return new Monster();
         }
 
-        public static Monster operator +(Monster m1, GameObject m2)
+        public static Monster operator +(Monster m1, GameObjectInterface<int> m2)
         {
             return new Monster();
         }

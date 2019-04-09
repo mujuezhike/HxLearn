@@ -57,6 +57,7 @@
     <Compile Include="GameManage\ViewStatic.cs" />
     <Compile Include="GameObject\Direction.cs" />
     <Compile Include="GameObject\GameObject.cs" />
+    <Compile Include="GameObject\GameObjectGroup.cs" />
     <Compile Include="GameObject\GameObjectImpl.cs" />
     <Compile Include="GameObject\IGameObject.cs" />
     <Compile Include="GameObject\Monster.cs" />
@@ -69,7 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HxLibrary\HxLibrary.csproj">
+      <Project>{a53e71c1-aef9-4e92-8305-d3694918c84c}</Project>
+      <Name>HxLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

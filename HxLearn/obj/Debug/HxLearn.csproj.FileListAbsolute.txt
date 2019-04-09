@@ -8,3 +8,5 @@ D:\gitres\TAA_HxLearn\HxLearn\HxLearn\obj\Debug\HxLearn.csprojResolveAssemblyRef
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.dll
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.pdb
 D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\Newtonsoft.Json.xml
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLibrary.dll
+D:\gitres\TAA_HxLearn\HxLearn\HxLearn\bin\Debug\HxLibrary.pdb

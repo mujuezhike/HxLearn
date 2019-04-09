@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HxLearn.GameObject
 {
-    interface GameObject
+    public interface GameObjectInterface<out T>
     {
-        void Draw();
+        T Draw();
 
         void Remove();
 

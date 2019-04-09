@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HxLearn.GameObject
 {
-    class GameObjectImpl : GameObject
+    class GameObjectImpl : GameObjectInterface<int>
     {
-        public void Draw()
+        public int Draw()
         {
             throw new NotImplementedException();
         }

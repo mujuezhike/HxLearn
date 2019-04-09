@@ -1,9 +1,13 @@
-﻿using HxLearn.GameStatic;
+﻿using HxLearn.GameObject;
+using HxLearn.GameStatic;
+using HxLibrary;
+using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 
 namespace HxLearn
@@ -12,10 +16,10 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
-            int m = 1;
-            int l = 4;
-            Console.WriteLine("322");
-            Debug.WriteLine("4333");
+            File.Create("meidew.txt");
+            Directory.CreateDirectory("dkk");
+            File.Create("dkk/meidew.txt");
+            
             Console.ReadLine();
 
             ViewStatic.InitConsole();

@@ -95,7 +95,6 @@ namespace HxLearn
             {
                 string coding1 = "";
                 string[] coding = new string[16];
-                string a = "";
 
                 for (int i = 0; i < character.Length; i++)
                 {
