@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Link>
+  <LinkBean tname="tnameoo">    
+  mksl
+  </LinkBean>
+  <LinkList>
+    <LinkValue>45</LinkValue>
+    <LinkValue>46</LinkValue>
+    <LinkValue>47</LinkValue>
+  </LinkList>
+</Link>

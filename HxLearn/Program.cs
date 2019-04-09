@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Xml;
 
 namespace HxLearn
 {
@@ -16,10 +17,21 @@ namespace HxLearn
     {
         static void Main(string[] args)
         {
-            File.Create("meidew.txt");
-            Directory.CreateDirectory("dkk");
-            File.Create("dkk/meidew.txt");
-            
+            Dictionary<string, string> map = new Dictionary<string, string>();
+            map["ss"] = "ewe";
+            Console.WriteLine(map["ss"]);
+
+
+            XmlDocument document = new XmlDocument();
+            document.Load(FileUtils.GetProPath()+"/res/result.xml");
+            XmlElement xd = document.DocumentElement;
+            Console.WriteLine(xd.Name);
+            Console.WriteLine(xd.ToString());
+            Console.WriteLine(xd.Value);
+            KeyValuePair<string, string> kv = new KeyValuePair<string, string>("23","sss");
+            Console.WriteLine(kv.Key);
+            Console.WriteLine(kv.Value);
+
             Console.ReadLine();
 
             ViewStatic.InitConsole();
