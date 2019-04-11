@@ -18,8 +18,8 @@ namespace HxLearn.GameStatic
         public static void InitConsole()
         {
             Console.WindowWidth = 200;
-            Console.WindowHeight = 61;//实际使用59
-            Console.BufferHeight = 61;//实际使用59
+            Console.WindowHeight = 61;//实际使用60
+            Console.BufferHeight = 61;//实际使用60
 
         }
 

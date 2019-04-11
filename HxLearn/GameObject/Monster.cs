@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HxLearn.GameObject
 {
-    class Monster:IDisposable
+    class Monster:IDisposable,IComparer<Monster>
     {
 
         private int[] innerList;
@@ -14,6 +14,12 @@ namespace HxLearn.GameObject
 
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public int Attack { get; set; }
+
+        public int Defend { get; set; }
+
+        public int HP { get; set; }
         public Monster( int id)
         {
 
@@ -72,6 +78,12 @@ namespace HxLearn.GameObject
             Dispose(true);
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             // GC.SuppressFinalize(this);
+        }
+
+        public int Compare(Monster x, Monster y)
+        {
+            Console.WriteLine("Compare(" + x + "," + y + ")");
+            return x.Attack - y.Attack;
         }
         #endregion
 

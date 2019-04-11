@@ -37,6 +37,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,10 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapExtension.cs" />
+    <Compile Include="Extension\BitmapExtension.cs" />
     <Compile Include="CommonUtils\MemUtils.cs" />
     <Compile Include="CommonUtils\Paixu.cs" />
     <Compile Include="CommonUtils\TypeUtils.cs" />
+    <Compile Include="Extension\EventArgExtension.cs" />
+    <Compile Include="Extension\StringBuilderExtension.cs" />
     <Compile Include="FileUtils.cs" />
     <Compile Include="GameManage\ViewStatic.cs" />
     <Compile Include="GameObject\Direction.cs" />
@@ -60,9 +63,12 @@
     <Compile Include="GameObject\GameObjectGroup.cs" />
     <Compile Include="GameObject\GameObjectImpl.cs" />
     <Compile Include="GameObject\IGameObject.cs" />
+    <Compile Include="GameObject\ItemBase.cs" />
     <Compile Include="GameObject\Monster.cs" />
     <Compile Include="GameObject\MonsterBase.cs" />
+    <Compile Include="GameObject\ViewComponent.cs" />
     <Compile Include="ImageLoader.cs" />
+    <Compile Include="Lab\DomainTest.cs" />
     <Compile Include="MathManage\Mandora.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
