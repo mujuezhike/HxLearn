@@ -3,13 +3,19 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 
-namespace HxLearn
+namespace HxLearn.CoreEngine
 {
-    class ImageLoader
+    public class ImageLoader
     {
-        private static object objlock = new object();
+        public static object objlock = new object();
 
         private static VBlock[,] LastTemp;
+
+        public struct Point
+        {
+            public Int32 x;
+            public Int32 y;
+        }
         /// <summary>
         /// 图层显示块
         /// </summary>
@@ -53,7 +59,7 @@ namespace HxLearn
         /// <summary>
         /// 图层
         /// </summary>
-        public struct Layer
+        public class Layer
         {
             public String name;
             public VBlock[,] map;

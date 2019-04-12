@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HxLearn.ImageLoader;
+using static HxLearn.CoreEngine.ImageLoader;
 
 namespace HxLearn.GameManage
 {
@@ -25,26 +25,29 @@ namespace HxLearn.GameManage
 
         public static Layer InitLayer(ref Layer layer)
         {
-            layer.name = "layer";
-            layer.map = new VBlock[100, 60];
-            for (int i = 0; i < layer.map.GetLength(0); i++)
+            lock (objlock)
             {
-                for (int j = 0; j < layer.map.GetLength(1); j++)
+                layer.name = "layer";
+                layer.map = new VBlock[100, 60];
+                for (int i = 0; i < layer.map.GetLength(0); i++)
                 {
-                    VBlock vb = new VBlock();
-                    vb.x = i;
-                    vb.y = j;
-                    vb.bColor = ConsoleColor.Black;
-                    vb.fColor = ConsoleColor.White;
-                    vb.font = "　";
-                    vb.isTrans = true;
-                    vb.isTransF = true;
-                    layer.map[i, j] = vb;
+                    for (int j = 0; j < layer.map.GetLength(1); j++)
+                    {
+                        VBlock vb = new VBlock();
+                        vb.x = i;
+                        vb.y = j;
+                        vb.bColor = ConsoleColor.Black;
+                        vb.fColor = ConsoleColor.White;
+                        vb.font = "　";
+                        vb.isTrans = true;
+                        vb.isTransF = true;
+                        layer.map[i, j] = vb;
+                    }
+
                 }
 
+                return layer;
             }
-
-            return layer;
         }
 
     }

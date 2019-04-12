@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HxLearn.CoreEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,7 @@ namespace HxLearn.GameManage
         private static bool isContinue = false;
         private static bool isInit = false;
 
-        private static Thread tr;
-
-        public void StartShow()
+        public void Start()
         {
             if (!isInit)
             {
@@ -49,15 +48,17 @@ namespace HxLearn.GameManage
 
         private static void BackLoop(object o)
         {
+            
             isContinue = true;
             while (isContinue)
             {
                 ImageLoader.Show(ViewStatic.EffectLayer, ViewStatic.FrontLayer, ViewStatic.MidLayer, ViewStatic.BackLayer);
-                Thread.Sleep(30);
+                Thread.Sleep(20);
             }
+            
         }
 
-        public void EndShow()
+        public void End()
         {
             isContinue = false;
         }

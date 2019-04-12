@@ -12,5 +12,6 @@ namespace HxLearn.GameObject
         Bottom,
         Left,
         Right,
+        Stop,
     }
 }

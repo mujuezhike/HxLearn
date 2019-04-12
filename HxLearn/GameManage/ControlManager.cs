@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HxLearn.GameObject;
+using HxLearn.GameObject.Impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +31,7 @@ namespace HxLearn.GameManage
         }
 
         private static bool isContinue = false;
-        public void StartControl()
+        public void Start()
         {
             if (!isContinue)
             {
@@ -43,13 +45,26 @@ namespace HxLearn.GameManage
             while (isContinue)
             {
                 char c = Console.ReadKey(true).KeyChar;
-
+                switch(c){
+                    case 'w':
+                        Snake.mainSnake.Dect = Direction.Top;
+                        break;
+                    case 'a':
+                        Snake.mainSnake.Dect = Direction.Left;
+                        break;
+                    case 's':
+                        Snake.mainSnake.Dect = Direction.Bottom;
+                        break;
+                    case 'd':
+                        Snake.mainSnake.Dect = Direction.Right;
+                        break;
+                }
                 //输出输入
-                Console.WriteLine(c);
+                //Console.WriteLine(c);
             }
         }
 
-        public void EndControl()
+        public void End()
         {
             isContinue = false;
         }
