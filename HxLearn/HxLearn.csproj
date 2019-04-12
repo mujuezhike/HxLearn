@@ -57,6 +57,9 @@
     <Compile Include="Extension\EventArgExtension.cs" />
     <Compile Include="Extension\StringBuilderExtension.cs" />
     <Compile Include="FileUtils.cs" />
+    <Compile Include="GameManage\ControlManager.cs" />
+    <Compile Include="GameManage\LogicManager.cs" />
+    <Compile Include="GameManage\ViewManager.cs" />
     <Compile Include="GameManage\ViewStatic.cs" />
     <Compile Include="GameObject\Direction.cs" />
     <Compile Include="GameObject\GameObject.cs" />
@@ -76,9 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

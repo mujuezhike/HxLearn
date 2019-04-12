@@ -7,6 +7,8 @@ namespace HxLearn
 {
     class ImageLoader
     {
+        private static object objlock = new object();
+
         private static VBlock[,] LastTemp;
         /// <summary>
         /// 图层显示块
@@ -168,81 +170,86 @@ namespace HxLearn
         /// <returns></returns>
         static public VBlock[,] LoadBitMap(VBlock[,] layer, Bitmap bm, int x, int y, int w, int l)
         {
-            bm = bm.ScaleToSize(w, l);
-
-            for (int i = 0; i < bm.Height; i++)
+            lock (objlock)
             {
-                for (int j = 0; j < bm.Width; j++)
+                bm = bm.ScaleToSize(w, l);
+
+                for (int i = 0; i < bm.Height; i++)
                 {
-                    Color c = bm.GetPixel(j, i);
-
-                    int min = 255 * 3;
-                    int color = 15;
-                    for (int m = 0; m < ColorFilter.GetLength(0); m++)
+                    for (int j = 0; j < bm.Width; j++)
                     {
-                        int ce = Math.Abs(c.R - ColorFilter[m, 0])
-                               + Math.Abs(c.G - ColorFilter[m, 1])
-                               + Math.Abs(c.B - ColorFilter[m, 2]);
-                        if (ce < min)
+                        Color c = bm.GetPixel(j, i);
+
+                        int min = 255 * 3;
+                        int color = 15;
+                        for (int m = 0; m < ColorFilter.GetLength(0); m++)
                         {
-                            min = ce;
-                            color = ColorFilter[m, 3];
+                            int ce = Math.Abs(c.R - ColorFilter[m, 0])
+                                   + Math.Abs(c.G - ColorFilter[m, 1])
+                                   + Math.Abs(c.B - ColorFilter[m, 2]);
+                            if (ce < min)
+                            {
+                                min = ce;
+                                color = ColorFilter[m, 3];
+                            }
                         }
+
+                        //Console.SetCursorPosition(j * 2 + x, i + y);
+                        VBlock vb = new VBlock();
+                        vb.x = j + x;
+                        vb.y = i + y;
+                        vb.bColor = (ConsoleColor)color;
+                        vb.fColor = ConsoleColor.White;
+                        vb.font = "　";
+                        vb.isTrans = c.A == 0 ? true : false;
+                        layer[j + x, i + y] = vb;
+
                     }
-
-                    //Console.SetCursorPosition(j * 2 + x, i + y);
-                    VBlock vb = new VBlock();
-                    vb.x = j + x;
-                    vb.y = i + y;
-                    vb.bColor = (ConsoleColor)color;
-                    vb.fColor = ConsoleColor.White;
-                    vb.font = "　";
-                    vb.isTrans = c.A == 0 ? true : false;
-                    layer[j + x, i + y] = vb;
-
                 }
-            }
 
-            return layer;
+                return layer;
+            }
         }
 
         static public VBlock[,] LoadBitMap(VBlock[,] layer, Bitmap bm, int x, int y)
         {
-
-            for (int i = 0; i < bm.Height; i++)
+            lock (objlock)
             {
-                for (int j = 0; j < bm.Width; j++)
+                for (int i = 0; i < bm.Height; i++)
                 {
-                    Color c = bm.GetPixel(j, i);
-
-                    int min = 255 * 3;
-                    int color = 15;
-                    for (int m = 0; m < ColorFilter.GetLength(0); m++)
+                    for (int j = 0; j < bm.Width; j++)
                     {
-                        int ce = Math.Abs(c.R - ColorFilter[m, 0])
-                               + Math.Abs(c.G - ColorFilter[m, 1])
-                               + Math.Abs(c.B - ColorFilter[m, 2]);
-                        if (ce < min)
+                        Color c = bm.GetPixel(j, i);
+
+                        int min = 255 * 3;
+                        int color = 15;
+                        for (int m = 0; m < ColorFilter.GetLength(0); m++)
                         {
-                            min = ce;
-                            color = ColorFilter[m, 3];
+                            int ce = Math.Abs(c.R - ColorFilter[m, 0])
+                                   + Math.Abs(c.G - ColorFilter[m, 1])
+                                   + Math.Abs(c.B - ColorFilter[m, 2]);
+                            if (ce < min)
+                            {
+                                min = ce;
+                                color = ColorFilter[m, 3];
+                            }
                         }
+
+                        //Console.SetCursorPosition(j * 2 + x, i + y);
+                        VBlock vb = new VBlock();
+                        vb.x = j + x;
+                        vb.y = i + y;
+                        vb.bColor = (ConsoleColor)color;
+                        vb.fColor = ConsoleColor.White;
+                        vb.font = "　";
+                        vb.isTrans = c.A == 0 ? true : false;
+                        layer[j + x, i + y] = vb;
+
                     }
-
-                    //Console.SetCursorPosition(j * 2 + x, i + y);
-                    VBlock vb = new VBlock();
-                    vb.x = j + x;
-                    vb.y = i + y;
-                    vb.bColor = (ConsoleColor)color;
-                    vb.fColor = ConsoleColor.White;
-                    vb.font = "　";
-                    vb.isTrans = c.A == 0 ? true : false;
-                    layer[j + x, i + y] = vb;
-
                 }
-            }
 
-            return layer;
+                return layer;
+            }
         }
 
         static public void ShowMutiLayer(params Layer[] layers)
@@ -455,34 +462,38 @@ namespace HxLearn
         /// <param name="layers"></param>
         public static void Show(params Layer[] layers)
         {
-            VBlock[,] nBlocks = ComBineLayer(layers);
-            int m = 0;
-            if (null != nBlocks)
+            lock (objlock)
             {
-                for (int i = 0; i < nBlocks.GetLength(0); i++)
-                {
-                    for (int j = 0; j < nBlocks.GetLength(1); j++)
-                    {
-                        VBlock vb = nBlocks[i, j];
-                        if (null== LastTemp || !LastTemp[i, j].Equals(vb))
-                        {
-                            Console.SetCursorPosition(i * 2, j);
-                            Console.BackgroundColor = vb.bColor;
-                            Console.ForegroundColor = vb.fColor;
-                            Console.CursorVisible = false;
-                            Console.Write(vb.font);
-                            m++;
-                        }
 
+                VBlock[,] nBlocks = ComBineLayer(layers);
+                int m = 0;
+                if (null != nBlocks)
+                {
+                    for (int i = 0; i < nBlocks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < nBlocks.GetLength(1); j++)
+                        {
+                            VBlock vb = nBlocks[i, j];
+                            if (null == LastTemp || !LastTemp[i, j].Equals(vb))
+                            {
+                                Console.SetCursorPosition(i * 2, j);
+                                Console.BackgroundColor = vb.bColor;
+                                Console.ForegroundColor = vb.fColor;
+                                Console.CursorVisible = false;
+                                Console.Write(vb.font);
+                                m++;
+                            }
+
+                        }
                     }
                 }
+                //DEBUG
+                //Console.SetCursorPosition(0, 0);
+                //Console.BackgroundColor = ConsoleColor.Black;
+                //Console.ForegroundColor = ConsoleColor.White;
+                //Console.Write(m);
+                LastTemp = CopyVBlocks(nBlocks);
             }
-            //DEBUG
-            //Console.SetCursorPosition(0, 0);
-            //Console.BackgroundColor = ConsoleColor.Black;
-            //Console.ForegroundColor = ConsoleColor.White;
-            //Console.Write(m);
-            LastTemp = CopyVBlocks(nBlocks);
         }
     }
 }

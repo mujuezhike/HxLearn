@@ -1,14 +1,8 @@
 ﻿using HxLearn.Extension;
-using HxLearn.GameObject;
-using HxLearn.GameStatic;
-using HxLearn.Lab;
+using HxLearn.GameManage;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
 using System.Threading;
 
 namespace HxLearn
@@ -20,73 +14,15 @@ namespace HxLearn
         static void Main(string[] args)
         {
 
-            AppDomain.MonitoringIsEnabled = true;
-            AppDomain ad = Thread.GetDomain();
-            Console.WriteLine(AppDomain.MonitoringSurvivedProcessMemorySize);
-            Console.WriteLine(ad.MonitoringSurvivedMemorySize);
-            Console.WriteLine(ad.MonitoringTotalAllocatedMemorySize);
-            Console.WriteLine(ad.MonitoringTotalProcessorTime);
+            ControlManager.Instance.StartControl();
 
-            List<int> ilist = new List<int>();
-            ilist.Add(6);
-            ilist.Add(3);
-            ilist.Add(2);
-            ilist.Add(7);
-            ilist.Add(8);
-            ilist.Add(4);
-            ilist.Add(1);
-            ilist.Add(5);
-            ilist.Sort((a,b)=> (a - b));
+            Thread.Sleep(10000);
 
-            Action<string> act = (a) => { Console.WriteLine(a); };
-            Action<string, int> actr = (a, b) => { Console.WriteLine(a + b); };
+            ControlManager.Instance.EndControl();
 
-            Func<int, string> func = (a) => (a + "");
-            Func<int> funci = () => 3;
-            Func<int, int ,int> funcsum = (a,b) => (a + b);
-
-            string s = "";
-            while ((s = Console.ReadLine()) != null)
-            {
-                switch (s)
-                {
-                    case "1":
-                        Sort(ilist, SortAsc);
-                        Show(ilist);
-                        break;
-                    case "2":
-                        Sort(ilist, SortDesc);
-                        Show(ilist);
-                        break;
-                    default:
-                        break;
-                }
-                
-            }
-
-            SecureString secureStr = new SecureString();
-            secureStr.AppendChar('A');
-            string re = secureStr.ToString();//SecureString 中的值会被加密保存,不能直接获取,此时re=System.Security.SecureString
-            IntPtr inP = Marshal.SecureStringToBSTR(secureStr);//inP为secureStr的句柄
-            string ss = Marshal.PtrToStringBSTR(inP);//ss="A"
-
-            Marshal.ZeroFreeBSTR(inP);//释放BSTR指针
-            string ss2 = Marshal.PtrToStringBSTR(inP);//ss2="" 
-
-            Console.WriteLine(ss);
-            Console.WriteLine(ss2);
-
-            EmailSender es = new EmailSender();
-            EmailReciver er = new EmailReciver(es);
-            es.SimulateNewMail("上海", "北京", "内容");
-
+           Thread.Sleep(1000000);
+            
             Console.ReadLine();
-
-            ViewStatic.InitConsole();
-            ViewStatic.InitLayer(ref ViewStatic.BackLayer);
-            ViewStatic.InitLayer(ref ViewStatic.MidLayer);
-            ViewStatic.InitLayer(ref ViewStatic.FrontLayer);
-            ViewStatic.InitLayer(ref ViewStatic.EffectLayer);
 
             Bitmap[] bmc = new Bitmap[5];
             bmc[0] = new Bitmap(@"D:\csharp\ozy\ozy\shijieditu.jpg");

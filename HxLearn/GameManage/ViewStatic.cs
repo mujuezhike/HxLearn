@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static HxLearn.ImageLoader;
 
-namespace HxLearn.GameStatic
+namespace HxLearn.GameManage
 {
     class ViewStatic
     {
