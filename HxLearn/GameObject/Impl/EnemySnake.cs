@@ -56,7 +56,7 @@ namespace HxLearn.GameObject.Impl
                     }
                 }
 
-                if (rd.Next(10) < 3 && X < 10 && Dect != Direction.Right)
+                if (rd.Next(10) < 8 && X < 4 && Dect != Direction.Right)
                 {
                     int m = rd.Next(3);
                     if (m == 0)
@@ -73,7 +73,7 @@ namespace HxLearn.GameObject.Impl
                     }
                 }
 
-                if (rd.Next(10) < 3 &&  X > 90 && Dect != Direction.Left)
+                if (rd.Next(10) < 8 &&  X > 86 && Dect != Direction.Left)
                 {
                     int m = rd.Next(3);
                     if (m == 0)
@@ -90,7 +90,7 @@ namespace HxLearn.GameObject.Impl
                     }
                 }
 
-                if (rd.Next(10) < 3 &&  Y < 10 && Dect != Direction.Bottom)
+                if (rd.Next(10) < 8 &&  Y < 4 && Dect != Direction.Bottom)
                 {
                     int m = rd.Next(3);
                     if (m == 0)
@@ -107,7 +107,7 @@ namespace HxLearn.GameObject.Impl
                     }
                 }
 
-                if (rd.Next(10) < 3 && Y > 50 && Dect != Direction.Top)
+                if (rd.Next(10) < 8 && Y > 56 && Dect != Direction.Top)
                 {
                     int m = rd.Next(3);
                     if (m == 0)

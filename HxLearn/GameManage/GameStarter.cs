@@ -28,9 +28,9 @@ namespace HxLearn.GameManage
             //    LogicManager.lk.AddLast(sk);
             //}
 
-            for (int i=0; i < 2;i++)
+            for (int i=0; i < 16;i++)
             {
-                EnemySnake sk = new EnemySnake(i+100,ConsoleColor.Blue);
+                EnemySnake sk = new EnemySnake(i+100/*,ConsoleColor.Blue*/);
                 LogicManager.lk.AddLast(sk);
             }
             Cloud cd = new Cloud(20,20, Direction.Right,54);
